@@ -1,0 +1,122 @@
+.recipe {
+    background-image: linear-gradient(45deg, yellow, aliceblue);
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.foodCard:hover {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 200ms;
+    /* color: #b23c89fd; */
+}
+
+.moreFoodButton:hover {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 200ms;
+}
+
+.logOut:hover{
+    box-shadow: 2px 2px 15px 5px red;
+    transition-duration: 200ms;
+}
+
+.selectionCart {
+    /* background-image: linear-gradient(45deg, #A75D5D, #0081B4); */
+    /* background-image: linear-gradient(45deg, white, blue); */
+    background-color: black;
+    background-size: 100%;
+    background-repeat: repeat;
+
+}
+
+.selectionCart:hover {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 380ms;
+    background-color: black;
+    background-size: 100%;
+    background-repeat: repeat;
+    /* color: deepskyblue; */
+}
+
+.forSticky {
+    display: flex;
+    justify-content: center;
+}
+
+.activeButton {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 300ms;
+}
+
+.reservationCardForIndv:hover {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 100ms;
+    border-radius: 5px;
+}
+
+/* style={{
+    backgroundImage: "linear-gradient(45deg, black, white)",
+    backgroundSize: "100%",
+    backgroundRepeat: "repeat"
+}} */
+
+
+.hiddenNavbar {
+    display: none;
+    transition: 1000ms;
+}
+
+.blockNavbar {
+    display: block;
+    transition: 1000ms;
+}
+
+.paymentAbleFood:hover {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 280ms;
+    background-color: black;
+    background-size: 100%;
+    background-repeat: repeat;
+}
+
+.overWriteSpinner{
+    width: 20px !important;
+    height: 20px !important;
+}
+
+
+.confirmOrder{
+    transition-duration: 200ms;
+    background-color: black;
+    color: white;
+}
+
+
+.confirmOrder:hover{
+    box-shadow: 2px 2px 15px 5px black;
+    transition-duration: 200ms;
+    background-color: white;
+    color: black;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid #247f9e;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
