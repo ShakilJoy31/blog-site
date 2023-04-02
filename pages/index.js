@@ -4,11 +4,20 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import FoodProductStyle from '../Components/FoodProductStyle.module.css';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { addUser } from '@/lib/healper';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const router = useRouter(); 
+  const router = useRouter();
+  const [name, setName] = useState(''); 
+  const [email, setEmail] = useState(''); 
+  const [role, setRole] = useState('');
+  const handleRegisterButton = () =>{
+    const formData = {name: name, email:email, role:role}
+    addUser(formData).then(res => console.log(res));
+  }
   return (
     <>
       <Head>
@@ -27,21 +36,20 @@ export default function Home() {
           <div>
             <div>
               <h1 className="flex justify-center text-4xl text-white">Sign up here</h1>
-              <div className=" mt-6">
+              <div className="mt-6 ">
                 <div>
-                  <input type="text" placeholder='Type your name here' className="bg-black border-0 input focus:outline-none w-full" />
+                  <input onChange={(e)=>setName(e.target.value)} type="text" placeholder='Type your name here' className="w-full bg-black border-0 input focus:outline-none" />
 
-                  <input type="email" placeholder='Type your email here' className="bg-black border-0 input my-6 focus:outline-none w-full" required />
+                  <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder='Type your email here' className="w-full my-6 bg-black border-0 input focus:outline-none" required />
 
-                  <select className="select w-full border-0 bg-black">
-                    <option disabled selected>Reader</option>
-                    <option>Admin</option>
+                  <select onChange={(e)=>setRole(e.target.value)} className="w-full mb-6 bg-black border-0 select">
+                    <option disabled selected>Your role</option>
+                    <option>Reader</option>
                     <option>Author</option>
+                    <option>Admin</option>
                   </select>
 
-                  <input type="file" className="bg-black file-input file-input-error focus:outline-none w-full my-6" />
-
-                  <button className={`block mx-auto mb-4 w-full text-xl hover:text-white normal-case hover:bg-black border-0 btn text-black bg-white`}>Sign up</button>
+                  <button onClick={handleRegisterButton} className={`block mx-auto mb-4 w-full text-xl hover:text-white normal-case hover:bg-black border-0 btn text-black bg-white`}>Sign up</button>
 
                 </div>
               </div>
