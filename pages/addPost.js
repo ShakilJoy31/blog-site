@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import FoodProductStyle from '../Components/FoodProductStyle.module.css';
 import { addUser } from '@/lib/healper';
-const addPost = () => {
+const AddPost = () => {
     const [title, setTitle] = useState(''); 
     const [description, setDescription] = useState('');
     const [user, setUser] = useState(''); 
@@ -67,4 +67,4 @@ const addPost = () => {
     );
 };
 
-export default addPost;
+export default AddPost;
