@@ -7,7 +7,6 @@ export async function getUser (req, res) {
         if(!users){
             return res.status(404).json({error: 'Data is not found'})
         }
-        // console.log(users); 
         res.status(200).json(users)
     }catch(errors){
         res.status(404).json({errors: 'Got error while fetching the data'})
@@ -23,7 +22,7 @@ export async function postUsers(req, res){
         }
         Users.create(formData)
         .then(data => {
-            console.log(''); 
+            console.log(data); 
         })
     }catch(errors){
         return res.status(404).json({error: 'Posting the user is failed'});
@@ -43,5 +42,36 @@ export async function updateUserWithFeedBack (req, res) {
         res.status(404).json({error: 'User is not selected...!'}); 
     }catch(errors){
         return res.status(404).json({error: 'Operation failed to update the data....!'}); 
+    }
+}
+
+
+
+// Specific post
+export async function getSpecificPost(req, res) {
+    try{
+        const {singlePost} = req.query; 
+        if(singlePost){
+            const user = await Users.findById(singlePost); 
+            return res.status(200).json(user); 
+        }
+        res.status(404).json({error: 'User id is not found.'}); 
+    }catch(error){
+        res.status(404).json({error: 'Operation failed to get a specific user.'}); 
+    }
+}
+
+// Deleting the blog by admin or Authors
+
+export async function deleteUser (req, res){
+    try{
+        const {userId} = req.query; 
+        if(userId){
+            const user = await Users.findByIdAndDelete(userId); 
+            return res.status(200).json({deleted: user}); 
+        }
+        res.status(404).json({error:'User id is not selected'}); 
+    }catch(error){
+        res.status(404).json({error: 'Operation failed to delete the data....!'})
     }
 }

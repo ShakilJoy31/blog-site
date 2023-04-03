@@ -1,4 +1,4 @@
-import { getUser, postUsers, updateUserWithFeedBack } from "../../Components/database/controller";
+import { deleteUser, getUser, postUsers, updateUserWithFeedBack } from "../../Components/database/controller";
 import connectMongo from './../../Components/database/connection';
 
 export default function handler(req, res) {
@@ -14,6 +14,9 @@ export default function handler(req, res) {
             break;
         case 'PUT':
             updateUserWithFeedBack(req, res)
+            break;
+        case 'DELETE':
+            deleteUser(req, res);
             break;
         default:
             res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);

@@ -14,9 +14,16 @@ export default function Home() {
   const [name, setName] = useState(''); 
   const [email, setEmail] = useState(''); 
   const [role, setRole] = useState('');
+
+  // const [isRegisteredUser, setIsRegisteredUser] = useState(''); 
+  //   useEffect(()=>{
+  //       const localStorageUser = JSON.parse(localStorage.getItem('user'));
+  //       setIsRegisteredUser(localStorageUser?.role); 
+  //   },[])
   const handleRegisterButton = () =>{
     const formData = {name: name, email:email, role:role}
-    addUser(formData).then(res => console.log(res));
+    localStorage.setItem('user', JSON.stringify(formData));
+    router.push('/readPost');
   }
   return (
     <>
@@ -49,7 +56,7 @@ export default function Home() {
                     <option>Admin</option>
                   </select>
 
-                  <button onClick={handleRegisterButton} className={`block mx-auto mb-4 w-full text-xl hover:text-white normal-case hover:bg-black border-0 btn text-black bg-white`}>Sign up</button>
+                  <button onClick={handleRegisterButton} className={`block mx-auto mb-4 w-full text-xl hover:text-white normal-case hover:bg-black border-0 btn text-black bg-white`}>Register</button>
 
                 </div>
               </div>

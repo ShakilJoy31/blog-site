@@ -1,7 +1,20 @@
+import { useEffect, useState } from 'react';
 import FoodProductStyle from '../Components/FoodProductStyle.module.css';
+import { addUser } from '@/lib/healper';
 const addPost = () => {
+    const [title, setTitle] = useState(''); 
+    const [description, setDescription] = useState('');
+    const [user, setUser] = useState(''); 
+    useEffect(()=>{
+        const localStorageUser = JSON.parse(localStorage.getItem('user'));
+        setUser(localStorageUser); 
+    },[])
+    const handleAddPostButton = () =>{
+        const formData = {title: title, description: description, email: user?.email, role: user?.role};
+        addUser(formData).then(res => console.log(res));
+    }
     return (
-        <div className='flex justify-center items-center pt-16'>
+        <div className='flex items-center justify-center pt-16'>
             <div>
                 <div style={{
                     backgroundColor: '#19A7CE',
@@ -12,11 +25,11 @@ const addPost = () => {
                         <div>
                             <div className="flex justify-center">
                                 <div>
-                                    <input type="text" placeholder='Title' className="w-full bg-black input focus:outline-none focus:border-white" />
+                                    <input onChange={(e)=>setTitle(e.target.value)} type="text" placeholder='Title' className="w-full bg-black input focus:outline-none focus:border-white" />
 
-                                    <textarea type='text' placeholder='Type your address' className="w-full my-4 bg-black input input-lg focus:outline-none focus:border-white pt-3" />
+                                    <textarea onChange={(e)=>setDescription(e.target.value)} type='text' placeholder='Type your address' className="w-full pt-3 my-4 bg-black input input-lg focus:outline-none focus:border-white" />
 
-                                    <label htmlFor="confirmOrderFoodModal" className={`w-full text-xl normal-case border-0 btn btn-md ${FoodProductStyle.confirmOrder} mb-6`}>Add Post</label>
+                                    <label onClick={handleAddPostButton} htmlFor="confirmOrderFoodModal" className={`w-full text-xl normal-case border-0 btn btn-md ${FoodProductStyle.confirmOrder} mb-6`}>Add Post</label>
                                 </div>
                             </div>
 
