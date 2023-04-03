@@ -4,7 +4,8 @@ const userSchema = new Schema({
     title: String,
     description: String,
     email: String,
-    role: String
+    role: String,
+    comment: Array
     // feedback: String,
     // address: String,
     // foodReviewedName: String,

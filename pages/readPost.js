@@ -7,13 +7,13 @@ import { useRouter } from 'next/router';
 const ReadPost = (props) => {
     const [blogs, setBlogs] = useState(props.blogs);
     const [deleteBlogId, setDeleteBlogId] = useState(props.blogs);
-    const handleSearchBlog = (titleNameForSearching) =>{
-        if(titleNameForSearching){
+    const handleSearchBlog = (titleNameForSearching) => {
+        if (titleNameForSearching) {
             const searchedBlog = blogs.filter((blog, index) => (blog.title).toLowerCase().match(titleNameForSearching));
-            setBlogs(searchedBlog); 
+            setBlogs(searchedBlog);
         }
-        else{
-            setBlogs(props.blogs); 
+        else {
+            setBlogs(props.blogs);
         }
     }
     const router = useRouter();
@@ -25,10 +25,10 @@ const ReadPost = (props) => {
     console.log(role);
     const deletePost = () => {
         deleteUserPost(deleteBlogId).then(res => {
-            const restBlogs = blogs.filter(blog => blog?._id !== deleteBlogId); 
-            setBlogs(restBlogs); 
+            const restBlogs = blogs.filter(blog => blog?._id !== deleteBlogId);
+            setBlogs(restBlogs);
         })
-        console.log(deleteBlogId); 
+        console.log(deleteBlogId);
     }
     console.log(blogs);
     return (
@@ -38,14 +38,13 @@ const ReadPost = (props) => {
 
                 <div className="flex justify-center mx-4 my-6 border-0 rounded-lg lg:mx-16 md:mx-10">
                     <input style={{
-                        opacity:'0.8'
-                    }} onChange={(e)=>handleSearchBlog(e.target.value)} type='text' placeholder='Search by Title' className="flex justify-center w-full text-red-600 bg-white border-0 input focus:outline-none" />
+                        opacity: '0.8'
+                    }} onChange={(e) => handleSearchBlog(e.target.value)} type='text' placeholder='Search by Title' className="flex justify-center w-full text-red-600 bg-white border-0 input focus:outline-none" />
                 </div>
 
 
                 <div className='flex justify-center'>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
-
                         {
                             blogs.map((blog, index) => <div key={index} className='p-4 border-0 cursor-pointer lg:w-[600px] md:w-[500px] w-[380px]'>
                                 <div style={{
@@ -75,7 +74,7 @@ const ReadPost = (props) => {
                                                         }
 
                                                         {
-                                                            (blog?.role == 'Author' && role != 'Admin') ? <label onClick={() => setDeleteBlogId(blog?._id)} htmlFor='reservationConfirmation' className='text-white cursor-pointer hover:text-red-400'><AiFillDelete size={35}></AiFillDelete></label> : ''
+                                                            (blog?.role == 'Author' && role != 'Admin' && role != 'Reader' && role != '') ? <label onClick={() => setDeleteBlogId(blog?._id)} htmlFor='reservationConfirmation' className='text-white cursor-pointer hover:text-red-400'><AiFillDelete size={35}></AiFillDelete></label> : ''
                                                         }
                                                     </div> : ''
                                                 }
@@ -98,7 +97,18 @@ const ReadPost = (props) => {
 
                     </div>
                 </div>
-                
+
+                <div className='flex justify-center py-6'>
+                    <div className="btn-group">
+                        <button className="btn btn-sm">1</button>
+                        <button className="btn btn-sm btn-active">2</button>
+                        <button className="btn btn-sm">3</button>
+                        <button className="btn btn-sm">4</button>
+                        <button className="btn btn-sm">5</button>
+                        <button className="btn btn-sm">6</button>
+                    </div>
+                </div>
+
                 {/* Deletion */}
                 <div>
                     <input type="checkbox" id="reservationConfirmation" className="modal-toggle" />

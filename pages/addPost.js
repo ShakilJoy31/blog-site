@@ -10,7 +10,7 @@ const addPost = () => {
         setUser(localStorageUser); 
     },[])
     const handleAddPostButton = () =>{
-        const formData = {title: title, description: description, email: user?.email, role: user?.role};
+        const formData = {title: title, description: description, email: user?.email, role: user?.role, comment: []};
         addUser(formData).then(res => console.log(res));
     }
     return (
