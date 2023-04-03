@@ -177,7 +177,7 @@ export default SinglePost;
 
 export async function getServerSideProps(context) {
     const { singlePost } = context.query;
-    const response = await fetch(`https://blog-site-bn2z.vercel.app/api/${singlePost}`)
+    const response = await fetch(`https://blog-site-nine-xi.vercel.app/api/${singlePost}`)
     const post = await response.json();
     return {
         props: { post }, // will be passed to the page component as props

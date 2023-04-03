@@ -152,7 +152,7 @@ export async function getServerSideProps(context) {
     // const {query} = context; 
     // const {url} = query; 
     // console.log(url); 
-    const response = await fetch(`https://blog-site-bn2z.vercel.app/api`)
+    const response = await fetch(`https://blog-site-nine-xi.vercel.app/api`)
     const blogs = await response.json();
     return {
         props: { blogs },
