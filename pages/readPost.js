@@ -28,9 +28,13 @@ const ReadPost = (props) => {
             const restBlogs = blogs.filter(blog => blog?._id !== deleteBlogId);
             setBlogs(restBlogs);
         })
-        console.log(deleteBlogId);
     }
-    console.log(blogs);
+
+    // For pagination
+    const [page, setPage] = useState(0);
+    // const url = `http://localhost:3000/api?page=${page}`
+    // router.push(url); 
+
     return (
         <div>
             <div className='min-h-screen'>
@@ -99,13 +103,12 @@ const ReadPost = (props) => {
                 </div>
 
                 <div className='flex justify-center py-6'>
-                    <div className="btn-group">
-                        <button className="btn btn-sm">1</button>
-                        <button className="btn btn-sm btn-active">2</button>
-                        <button className="btn btn-sm">3</button>
-                        <button className="btn btn-sm">4</button>
-                        <button className="btn btn-sm">5</button>
-                        <button className="btn btn-sm">6</button>
+                    <div className=" btn-group">
+                        {
+                            [...Array(props?.blogs.length).keys()].map(number => <button
+                                onClick={()=> setPage(number + 1)}
+                                className={ `btn-md rounded-sm text-xl ${number + 1 === page ? FoodProductStyle.selectedPaginationButton : FoodProductStyle.PaginationButton}`}>{number + 1}</button>)
+                        }
                     </div>
                 </div>
 
@@ -146,10 +149,13 @@ const ReadPost = (props) => {
 export default ReadPost;
 
 export async function getServerSideProps(context) {
+    // const {query} = context; 
+    // const {url} = query; 
+    // console.log(url); 
     const response = await fetch(`http://localhost:3000/api`)
     const blogs = await response.json();
     return {
-        props: { blogs }, // will be passed to the page component as props
+        props: { blogs },
     }
 }
 

@@ -103,6 +103,16 @@
     color: black;
 }
 
+.selectedPaginationButton{
+    background: white;
+    color: black; 
+}
+
+.PaginationButton{
+    background: black;
+    color: white;
+}
+
 .spinner {
     width: 100px;
     height: 100px;
