@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import FoodProductStyle from '../Components/FoodProductStyle.module.css';
 import { deleteUserPost, getUser } from '@/lib/healper';
 import { AiFillDelete } from "react-icons/ai";
+import { BsArrowLeft } from "react-icons/bs";
+import { IoMdAddCircle } from "react-icons/io";
 import { useRouter } from 'next/router';
 
 const ReadPost = (props) => {
@@ -37,7 +39,11 @@ const ReadPost = (props) => {
     return (
         <div>
             <div className='min-h-screen'>
-                <h1 className='flex justify-center pt-6 text-5xl'>All Posts</h1>
+                <div className='flex items-center justify-between pt-6 mx-4 lg:mx-16 md:mx-10'>
+                <span onClick={() => router.push('/')} className='text-4xl cursor-pointer hover:text-red-500'><BsArrowLeft></BsArrowLeft></span>
+                <h1 className='flex justify-center text-5xl'>All Posts</h1>
+                <span onClick={() => router.push('/addPost')} className='text-4xl text-red-500 cursor-pointer'><IoMdAddCircle></IoMdAddCircle></span>
+                </div>
 
                 <div className="flex justify-center mx-4 my-6 border-0 rounded-lg lg:mx-16 md:mx-10">
                     <input style={{
@@ -148,7 +154,7 @@ const ReadPost = (props) => {
 export default ReadPost;
 
 export async function getServerSideProps(context) {
-    const response = await fetch(`https://blog-site-nine-xi.vercel.app/api`)
+    const response = await fetch(`http://localhost:3000/api`)
     // https://blog-site-nine-xi.vercel.app/
     // http://localhost:3000/api
     const blogs = await response.json();

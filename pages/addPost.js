@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
 import FoodProductStyle from '../Components/FoodProductStyle.module.css';
 import { addUser } from '@/lib/healper';
+import { useRouter } from 'next/router';
+import { BsArrowLeft } from "react-icons/bs";
+import { GiOpenBook } from "react-icons/gi";
 const AddPost = () => {
-    const [title, setTitle] = useState(''); 
+    const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [user, setUser] = useState(''); 
-    useEffect(()=>{
+    const [user, setUser] = useState('');
+    const router = useRouter();
+    useEffect(() => {
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
-        setUser(localStorageUser); 
-    },[])
-    const handleAddPostButton = () =>{
-        const formData = {title: title, description: description, email: user?.email, role: user?.role, comment: []};
+        setUser(localStorageUser);
+    }, [])
+    const handleAddPostButton = () => {
+        const formData = { title: title, description: description, email: user?.email, role: user?.role, comment: [] };
         addUser(formData).then(res => console.log(res));
+        router.push('/readPost')
     }
     return (
         <div className='flex items-center justify-center pt-16'>
@@ -21,13 +26,22 @@ const AddPost = () => {
                     borderRadius: '5px'
                 }} className="hover:shadow-white w-[370px] lg:w-[650px] md:w-[600px]">
                     <div className="p-3">
-                        <h1 className='flex justify-center mb-4 text-3xl text-white'>Add your blog here</h1>
+                        <div className='flex items-center justify-between mb-3'>
+                            <span onClick={() => router.push('/')} className='text-4xl text-red-500 cursor-pointer hover:text-black'><BsArrowLeft></BsArrowLeft></span>
+
+                            <h1 className='flex justify-center text-3xl text-white'>Add your blog here</h1>
+
+                            <span onClick={() => router.push('/readPost')} className='text-4xl text-red-500 cursor-pointer hover:text-black'> <GiOpenBook></GiOpenBook></span>
+
+                            
+                        </div>
+
                         <div>
                             <div className="flex justify-center">
                                 <div>
-                                    <input onChange={(e)=>setTitle(e.target.value)} type="text" placeholder='Title' className="w-full bg-black input focus:outline-none focus:border-white" />
+                                    <input onChange={(e) => setTitle(e.target.value)} type="text" placeholder='Title' className="w-full bg-black input focus:outline-none focus:border-white" />
 
-                                    <textarea onChange={(e)=>setDescription(e.target.value)} type='text' placeholder='Type your address' className="w-full pt-3 my-4 bg-black input input-lg focus:outline-none focus:border-white" />
+                                    <textarea onChange={(e) => setDescription(e.target.value)} type='text' placeholder='Type your address' className="w-full pt-3 my-4 bg-black input input-lg focus:outline-none focus:border-white" />
 
                                     <label onClick={handleAddPostButton} htmlFor="confirmOrderFoodModal" className={`w-full text-xl normal-case border-0 btn btn-md ${FoodProductStyle.confirmOrder} mb-6`}>Add Post</label>
                                 </div>
