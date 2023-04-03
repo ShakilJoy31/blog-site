@@ -148,7 +148,7 @@ const ReadPost = (props) => {
 export default ReadPost;
 
 export async function getServerSideProps(context) {
-    const response = await fetch(`https://blog-site-nine-xi.vercel.app`)
+    const response = await fetch(`https://blog-site-nine-xi.vercel.app/api`)
     // https://blog-site-nine-xi.vercel.app/
     // http://localhost:3000/api
     const blogs = await response.json();
