@@ -32,8 +32,7 @@ const ReadPost = (props) => {
 
     // For pagination
     const [page, setPage] = useState(0);
-    // const url = `http://localhost:3000/api?page=${page}`
-    // router.push(url); 
+    console.log(blogs); 
 
     return (
         <div>
@@ -149,10 +148,9 @@ const ReadPost = (props) => {
 export default ReadPost;
 
 export async function getServerSideProps(context) {
-    // const {query} = context; 
-    // const {url} = query; 
-    // console.log(url); 
-    const response = await fetch(`https://blog-site-nine-xi.vercel.app/api`)
+    const response = await fetch(`https://blog-site-nine-xi.vercel.app`)
+    // https://blog-site-nine-xi.vercel.app/
+    // http://localhost:3000/api
     const blogs = await response.json();
     return {
         props: { blogs },
