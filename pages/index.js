@@ -42,7 +42,7 @@ export default function Home() {
         }} className="relative modal-box">
           <div>
             <div>
-              <h1 className="flex justify-center text-4xl text-white">Sign up here</h1>
+              <h1 className="flex justify-center text-4xl text-white">Your Identity</h1>
               <div className="mt-6 ">
                 <div>
                   <input onChange={(e)=>setName(e.target.value)} type="text" placeholder='Type your name here' className="w-full bg-black border-0 input focus:outline-none" />
